@@ -1,0 +1,16 @@
+{
+    "name"       : "athron98/ihas-tokenizer",
+    "description": "iHAS API Token Generator",
+    "license"    : "MIT",
+    "authors"    : [
+        {
+            "name" : "Gilang Albathin Nurhabibi",
+            "email": "athron.poster@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
