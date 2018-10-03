@@ -12,8 +12,16 @@ class Tokenizer
         $this->uuid = $credential[1];
     }
 
-    public static function getHeader($user = $this->user, $uuid = $this->uuid)
+    public function getHeader($user = null, $uuid = null)
     {
+        if(is_null($user)){
+            $user = $this->user;
+        }
+
+        if(is_null($uuid)){
+            $uuid = $this->uuid;
+        }
+
         $header = [
             'X-iHAS-AUTH-MODE' => 'TOKEN',
             'X-iHAS-AUTH-TOKEN' => $this->getToken($user, $uuid),
@@ -26,10 +34,19 @@ class Tokenizer
         return $return;
     }
 
-    public
 
-    public static function getToken($user = $this->user, $uuid = $this->uuid)
+    public function getToken($user = null, $uuid = null)
     {
+
+        if(is_null($user)){
+            $user = $this->user;
+        }
+
+        if(is_null($uuid)){
+            $uuid = $this->uuid;
+        }
+
+
         $hash = hash_hmac('sha512',strtolower($user),strtolower($uuid));
         date_default_timezone_set("Asia/Jakarta");
         $token = openssl_encrypt(round(microtime(true)) . ':' . $user,"AES-128-ECB",$hash);
